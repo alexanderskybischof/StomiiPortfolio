@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/stomiiportfolio/static/css/main.589fef65.css",
-    "main.js": "/stomiiportfolio/static/js/main.e6df9249.js",
-    "static/js/453.ececc0a5.chunk.js": "/stomiiportfolio/static/js/453.ececc0a5.chunk.js",
-    "static/media/noise.png": "/stomiiportfolio/static/media/noise.df068ee32495ed417a90.png",
-    "index.html": "/stomiiportfolio/index.html",
-    "main.589fef65.css.map": "/stomiiportfolio/static/css/main.589fef65.css.map",
-    "main.e6df9249.js.map": "/stomiiportfolio/static/js/main.e6df9249.js.map",
-    "453.ececc0a5.chunk.js.map": "/stomiiportfolio/static/js/453.ececc0a5.chunk.js.map"
+    "main.css": "/StomiiPortfolio/static/css/main.99d9b4c1.css",
+    "main.js": "/StomiiPortfolio/static/js/main.628414e1.js",
+    "static/js/453.ececc0a5.chunk.js": "/StomiiPortfolio/static/js/453.ececc0a5.chunk.js",
+    "index.html": "/StomiiPortfolio/index.html",
+    "main.99d9b4c1.css.map": "/StomiiPortfolio/static/css/main.99d9b4c1.css.map",
+    "main.628414e1.js.map": "/StomiiPortfolio/static/js/main.628414e1.js.map",
+    "453.ececc0a5.chunk.js.map": "/StomiiPortfolio/static/js/453.ececc0a5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.589fef65.css",
-    "static/js/main.e6df9249.js"
+    "static/css/main.99d9b4c1.css",
+    "static/js/main.628414e1.js"
   ]
 }
