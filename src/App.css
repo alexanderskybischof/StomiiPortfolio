@@ -17,7 +17,7 @@ body, html, .App {
   content: "";
   position: absolute;
   inset: -5%; /* extend beyond edges */
-  background-image: url("/public/noise.png");
+  background-image: var(--grain-url);
   background-repeat: repeat;
   background-size: 40% 40%; /* larger tiling to reduce visible motion */
   opacity: 0.06;

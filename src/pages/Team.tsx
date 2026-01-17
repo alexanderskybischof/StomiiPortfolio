@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 const Team: React.FC = () => {
+  const assetPrefix = process.env.PUBLIC_URL || '';
   const leftRef = useRef<HTMLDivElement | null>(null);
   const rightRef = useRef<HTMLDivElement | null>(null);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -28,7 +29,7 @@ const Team: React.FC = () => {
         <h1 className="work-fade" ref={titleRef}>Team</h1>
         <section className="team-grid">
           <div className="team-column work-fade" ref={leftRef}>
-            <img className="team-photo" src="/IMG_1149.jpeg" alt="Alexander Sky portrait" />
+            <img className="team-photo" src={`${assetPrefix}/IMG_1149.jpeg`} alt="Alexander Sky portrait" />
             <div className="team-bio">
               <h2>Alexander Sky Bischof</h2>
               <p>
@@ -43,7 +44,7 @@ const Team: React.FC = () => {
           <div className="team-divider" aria-hidden="true"></div>
 
           <div className="team-column work-fade" ref={rightRef}>
-            <img className="team-photo" src="/Tomoki.jpg" alt="Tomoki Narukawa portrait" />
+            <img className="team-photo" src={`${assetPrefix}/tomoki.jpg`} alt="Tomoki Narukawa portrait" />
             <div className="team-bio">
               <h2>Tomoki Narukawa</h2>
               <p>
@@ -67,7 +68,7 @@ const Team: React.FC = () => {
               <img src="igicon.png" alt="Instagram" className="logo-ig" />
             </a> */}
             <a href="https://www.youtube.com/@stomiistudios" target="_blank" rel="noopener noreferrer" className="social-link">
-              <img src="ytgreenlogo.png" alt="YouTube" className="logo-yt" />
+              <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" />
             </a>
           </div>
         </div>

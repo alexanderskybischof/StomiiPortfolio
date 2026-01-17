@@ -8,6 +8,7 @@ const Home: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const brandsRef = useRef<HTMLElement | null>(null);
+  const assetPrefix = process.env.PUBLIC_URL || '';
 
   useEffect(() => {
     const targets: (Element | null)[] = [infoContentRef.current, infoImageRef.current, brandsRef.current];
@@ -51,12 +52,12 @@ const Home: React.FC = () => {
             id="background-video"
             ref={videoRef}
           >
-            <source src="/rel.mp4" type="video/mp4" />
+            <source src={`${assetPrefix}/rel.mp4`} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
         <div className="hero-text">
-          <img src="/sforstomii.png" alt="Alexander Sky Logo middle" />
+          <img src={`${assetPrefix}/sforstomii.png`} alt="Alexander Sky Logo middle" />
         </div>
         <button className="video-control" onClick={toggleVideoPlayback} aria-label={isPlaying ? 'Pause video' : 'Play video'}>
           <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
@@ -74,21 +75,21 @@ const Home: React.FC = () => {
           </div>
 
           <div className="info-image" ref={infoImageRef}>
-            <img src="/Alex.jpg" alt="Alexander Sky portrait" />
+            <img src={`${assetPrefix}/Alex.JPG`} alt="Alexander Sky portrait" />
           </div>
         </div>
       </section>
 
       <section className="brands-section work-fade" ref={brandsRef}>
         <div className="brands-grid">
-          <img src="/brand1.png" alt="Brand 1" className="brand-logo" />
-          <img src="/brand2.png" alt="Brand 2" className="brand-logo" />
-          <img src="/brand3.png" alt="Brand 3" className="brand-logo" />
-          <img src="/brand4.png" alt="Brand 4" className="brand-logo" />
-          <img src="/brand5.png" alt="Brand 5" className="brand-logo" />
-          <img src="/brand6.png" alt="Brand 6" className="brand-logo" />
-          <img src="/brand7.png" alt="Brand 7" className="brand-logo" />
-          <img src="/brand8.png" alt="Brand 8" className="brand-logo" />
+          <img src={`${assetPrefix}/brand1.png`} alt="Brand 1" className="brand-logo" />
+          <img src={`${assetPrefix}/brand2.png`} alt="Brand 2" className="brand-logo" />
+          <img src={`${assetPrefix}/brand3.png`} alt="Brand 3" className="brand-logo" />
+          <img src={`${assetPrefix}/brand4.png`} alt="Brand 4" className="brand-logo" />
+          <img src={`${assetPrefix}/brand5.png`} alt="Brand 5" className="brand-logo" />
+          <img src={`${assetPrefix}/brand6.png`} alt="Brand 6" className="brand-logo" />
+          <img src={`${assetPrefix}/brand7.png`} alt="Brand 7" className="brand-logo" />
+          <img src={`${assetPrefix}/brand8.png`} alt="Brand 8" className="brand-logo" />
         </div>
       </section>
 
@@ -103,7 +104,7 @@ const Home: React.FC = () => {
               <img src="igicon.png" alt="Instagram" className="logo-ig" />
             </a> */}
             <a href="https://www.youtube.com/@stomiistudios" target="_blank" rel="noopener noreferrer" className="social-link">
-              <img src="ytgreenlogo.png" alt="YouTube" className="logo-yt" />
+              <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" />
             </a>
           </div>
         </div>

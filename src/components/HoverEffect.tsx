@@ -19,7 +19,7 @@ const HoverEffect = () => {
 
     // === Video texture ===
     const video = document.createElement("video");
-    video.src = "/sample.mp4"; // Ensure sample.mp4 is in /public
+    video.src = "/rel.mp4"; // Use existing video from /public
     video.loop = true;
     video.muted = true;
     video.play();

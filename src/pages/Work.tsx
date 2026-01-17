@@ -27,6 +27,7 @@ const ensureInstagramEmbedScript = () => {
 
 // ...existing code...
 const Work: React.FC = () => {
+  const assetPrefix = process.env.PUBLIC_URL || '';
   useEffect(() => {
     const cards = document.querySelectorAll('.work-card');
     const fadeTargets = document.querySelectorAll('.work-fade');
@@ -102,11 +103,11 @@ const Work: React.FC = () => {
             <div>contact@stomii.com</div>
           </div>
           <div className="footer-right">
-            {/* <a href="https://www.instagram.com/askypic" target="_blank" rel="noopener noreferrer" className="social-link">
+          {/* <a href="https://www.instagram.com/askypic" target="_blank" rel="noopener noreferrer" className="social-link">
               <img src="igicon.png" alt="Instagram" className="logo-ig" />
             </a> */}
             <a href="https://www.youtube.com/@stomiistudios" target="_blank" rel="noopener noreferrer" className="social-link">
-              <img src="ytgreenlogo.png" alt="YouTube" className="logo-yt" />
+              <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" />
             </a>
           </div>
         </div>
