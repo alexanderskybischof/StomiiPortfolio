@@ -7,7 +7,7 @@ import Contact from './pages/Contact';
 import Team from './pages/Team';
 
 const App: React.FC = () => {
-  const basename = process.env.NODE_ENV === 'production' ? '/' : '/';
+  const basename = process.env.NODE_ENV === 'production' ? '/StomiiPortfolio' : '/';
   const assetPrefix = process.env.PUBLIC_URL || '';
   const grainStyle = { '--grain-url': `url(${assetPrefix}/noise.png)` } as React.CSSProperties;
 
