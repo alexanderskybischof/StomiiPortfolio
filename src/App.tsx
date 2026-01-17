@@ -7,8 +7,16 @@ import Contact from './pages/Contact';
 import Team from './pages/Team';
 
 const App: React.FC = () => {
-  const basename = process.env.NODE_ENV === 'production' ? '/StomiiPortfolio' : '/';
-  const assetPrefix = process.env.PUBLIC_URL || '';
+  const publicUrl = process.env.PUBLIC_URL || '';
+  const pathFromPublicUrl = (() => {
+    try {
+      return new URL(publicUrl).pathname.replace(/\/$/, '');
+    } catch {
+      return publicUrl.replace(/\/$/, '');
+    }
+  })();
+  const basename = pathFromPublicUrl || '/';
+  const assetPrefix = publicUrl || '';
   const grainStyle = { '--grain-url': `url(${assetPrefix}/noise.png)` } as React.CSSProperties;
 
   return (
