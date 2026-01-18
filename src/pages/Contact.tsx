@@ -66,7 +66,7 @@ const Contact: React.FC = () => {
               <img src="igicon.png" alt="Instagram" className="logo-ig" />
             </a> */}
             <a href="https://www.youtube.com/@stomiistudios" target="_blank" rel="noopener noreferrer" className="social-link">
-              <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" />
+              <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" loading="lazy" decoding="async" />
             </a>
           </div>
         </div>

@@ -29,7 +29,7 @@ const Team: React.FC = () => {
         <h1 className="work-fade" ref={titleRef}>Team</h1>
         <section className="team-grid">
           <div className="team-column work-fade" ref={leftRef}>
-            <img className="team-photo" src={`${assetPrefix}/IMG_1149.jpeg`} alt="Alexander Sky portrait" />
+            <img className="team-photo" src={`${assetPrefix}/IMG_1149.jpeg`} alt="Alexander Sky portrait" loading="lazy" decoding="async" />
             <div className="team-bio">
               <h2>Alexander Sky Bischof</h2>
               <p>
@@ -44,7 +44,7 @@ const Team: React.FC = () => {
           <div className="team-divider" aria-hidden="true"></div>
 
           <div className="team-column work-fade" ref={rightRef}>
-            <img className="team-photo" src={`${assetPrefix}/tomoki.jpg`} alt="Tomoki Narukawa portrait" />
+            <img className="team-photo" src={`${assetPrefix}/tomoki.jpg`} alt="Tomoki Narukawa portrait" loading="lazy" decoding="async" />
             <div className="team-bio">
               <h2>Tomoki Narukawa</h2>
               <p>
@@ -68,7 +68,7 @@ const Team: React.FC = () => {
               <img src="igicon.png" alt="Instagram" className="logo-ig" />
             </a> */}
             <a href="https://www.youtube.com/@stomiistudios" target="_blank" rel="noopener noreferrer" className="social-link">
-              <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" />
+              <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" loading="lazy" decoding="async" />
             </a>
           </div>
         </div>

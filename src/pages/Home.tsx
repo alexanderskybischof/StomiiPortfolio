@@ -6,8 +6,9 @@ const Home: React.FC = () => {
   const infoContentRef = useRef<HTMLDivElement | null>(null);
   const infoImageRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const brandsRef = useRef<HTMLElement | null>(null);
+  const heroRef = useRef<HTMLElement | null>(null);
   const assetPrefix = process.env.PUBLIC_URL || '';
 
   useEffect(() => {
@@ -29,6 +30,27 @@ const Home: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    const hero = heroRef.current;
+    if (!video || !hero) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().then(() => setIsPlaying(true)).catch(() => {});
+        } else {
+          video.pause();
+          setIsPlaying(false);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
   const toggleVideoPlayback = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -42,15 +64,17 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <header className="hero-section" id="home">
+      <header className="hero-section" id="home" ref={heroRef}>
         <div className="video-container">
           <video
             className="background-video"
-            autoPlay
+            playsInline
             loop
             muted
             id="background-video"
             ref={videoRef}
+            preload="metadata"
+            poster={`${assetPrefix}/sforstomii.png`}
           >
             <source src={`${assetPrefix}/rel.mp4`} type="video/mp4" />
             Your browser does not support the video tag.
@@ -75,21 +99,21 @@ const Home: React.FC = () => {
           </div>
 
           <div className="info-image" ref={infoImageRef}>
-            <img src={`${assetPrefix}/Alex.JPG`} alt="Alexander Sky portrait" />
+            <img src={`${assetPrefix}/Alex.JPG`} alt="Alexander Sky portrait" loading="lazy" decoding="async" />
           </div>
         </div>
       </section>
 
       <section className="brands-section work-fade" ref={brandsRef}>
         <div className="brands-grid">
-          <img src={`${assetPrefix}/brand1.png`} alt="Brand 1" className="brand-logo" />
-          <img src={`${assetPrefix}/brand2.png`} alt="Brand 2" className="brand-logo" />
-          <img src={`${assetPrefix}/brand3.png`} alt="Brand 3" className="brand-logo" />
-          <img src={`${assetPrefix}/brand4.png`} alt="Brand 4" className="brand-logo" />
-          <img src={`${assetPrefix}/brand5.png`} alt="Brand 5" className="brand-logo" />
-          <img src={`${assetPrefix}/brand6.png`} alt="Brand 6" className="brand-logo" />
-          <img src={`${assetPrefix}/brand7.png`} alt="Brand 7" className="brand-logo" />
-          <img src={`${assetPrefix}/brand8.png`} alt="Brand 8" className="brand-logo" />
+          <img src={`${assetPrefix}/brand1.png`} alt="Brand 1" className="brand-logo" loading="lazy" decoding="async" />
+          <img src={`${assetPrefix}/brand2.png`} alt="Brand 2" className="brand-logo" loading="lazy" decoding="async" />
+          <img src={`${assetPrefix}/brand3.png`} alt="Brand 3" className="brand-logo" loading="lazy" decoding="async" />
+          <img src={`${assetPrefix}/brand4.png`} alt="Brand 4" className="brand-logo" loading="lazy" decoding="async" />
+          <img src={`${assetPrefix}/brand5.png`} alt="Brand 5" className="brand-logo" loading="lazy" decoding="async" />
+          <img src={`${assetPrefix}/brand6.png`} alt="Brand 6" className="brand-logo" loading="lazy" decoding="async" />
+          <img src={`${assetPrefix}/brand7.png`} alt="Brand 7" className="brand-logo" loading="lazy" decoding="async" />
+          <img src={`${assetPrefix}/brand8.png`} alt="Brand 8" className="brand-logo" loading="lazy" decoding="async" />
         </div>
       </section>
 
@@ -104,7 +128,7 @@ const Home: React.FC = () => {
               <img src="igicon.png" alt="Instagram" className="logo-ig" />
             </a> */}
             <a href="https://www.youtube.com/@stomiistudios" target="_blank" rel="noopener noreferrer" className="social-link">
-              <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" />
+              <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" loading="lazy" decoding="async" />
             </a>
           </div>
         </div>
