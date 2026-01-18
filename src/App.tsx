@@ -1,11 +1,10 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
-
-const Work = lazy(() => import('./pages/Work'));
-const Contact = lazy(() => import('./pages/Contact'));
-const Team = lazy(() => import('./pages/Team'));
+import Work from './pages/Work';
+import Contact from './pages/Contact';
+import Team from './pages/Team';
 
 const App: React.FC = () => {
   const publicUrl = process.env.PUBLIC_URL || '';
@@ -26,7 +25,7 @@ const App: React.FC = () => {
         <nav className="navbar">
           <div className="nav-left">
             <Link to="/" className="nav-logo">
-              <img src={`${assetPrefix}/AlexSkySignature2.png`} alt="Alexander Sky Logo" decoding="async" />
+              <img src={`${assetPrefix}/AlexSkySignature2.png`} alt="Alexander Sky Logo" />
             </Link>
           </div>
           <div className="nav-right">
@@ -44,30 +43,9 @@ const App: React.FC = () => {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/work"
-            element={
-              <Suspense fallback={<div className="page">Loading work…</div>}>
-                <Work />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/team"
-            element={
-              <Suspense fallback={<div className="page">Loading team…</div>}>
-                <Team />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/contact"
-            element={
-              <Suspense fallback={<div className="page">Loading contact…</div>}>
-                <Contact />
-              </Suspense>
-            }
-          />
+          <Route path="/work" element={<Work />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
