@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Work from './pages/Work';
 import Contact from './pages/Contact';
 import Team from './pages/Team';
+import ProjectDetail from './pages/ProjectDetail';
 
 const App: React.FC = () => {
   const publicUrl = process.env.PUBLIC_URL || '';
@@ -44,6 +45,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/work/:projectSlug" element={<ProjectDetail />} />
           <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Navigate to="/" replace />} />

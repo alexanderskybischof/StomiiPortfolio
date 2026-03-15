@@ -1,35 +1,12 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { projects } from '../data/projects';
 
-declare global {
-  interface Window {
-    instgrm?: {
-      Embeds?: {
-        process: () => void;
-      };
-    };
-  }
-}
-
-type WorkItem = {
-  title: string;
-  roles: string[];
-  youtubeId?: string;
-  instagramUrl?: string;
-};
-
-const workItems: WorkItem[] = [
-  // Your work items here
-];
-
-const ensureInstagramEmbedScript = () => {
-  // Using direct iframe embeds; no external script required.
-};
-
-// ...existing code...
 const Work: React.FC = () => {
   const assetPrefix = process.env.PUBLIC_URL || '';
+
   useEffect(() => {
-    const cards = document.querySelectorAll('.work-card');
+    const cards = document.querySelectorAll('.work-row');
     const fadeTargets = document.querySelectorAll('.work-fade');
 
     if (!('IntersectionObserver' in window)) {
@@ -54,68 +31,58 @@ const Work: React.FC = () => {
     }
   }, []);
 
-  useEffect(() => {
-    ensureInstagramEmbedScript();
-  }, []);
-
   return (
     <main className="page page--work">
       <div className="page-content page-content--work">
         <h1 className="work-fade">Work</h1>
         <p className="work-description work-fade">
-          This page is currently under development, please refer to the individual links in our contact page to see current work.
+          
         </p>
 
-        <section className="work-grid work-fade">
-          {workItems.map((item, index) => (
-            <article className="work-card" key={`${item.title}-${index}`}>
-              <div className="work-card__label">
-                <span className="work-card__title">{item.title}</span>
-                <span className="work-card__roles">{item.roles.join(' • ')}</span>
+        <section className="work-list work-fade">
+          {projects.map((project) => (
+            <Link className="work-row" key={project.slug} to={`/work/${project.slug}`}>
+              <div className="work-row__label">
+                <h2 className="work-row__title">{project.title}</h2>
               </div>
-              <div className="work-card__frame">
-                {item.youtubeId ? (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${item.youtubeId}`}
-                    title={item.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    loading="lazy"
-                  ></iframe>
+              <div className="work-row__media">
+                {project.thumbnail.type === 'video' ? (
+                  <video
+                    src={project.thumbnail.src}
+                    muted
+                    playsInline
+                    autoPlay
+                    loop
+                    preload="metadata"
+                    aria-label={project.thumbnail.alt}
+                  />
                 ) : (
-                  <iframe
-                    src={item.instagramUrl}
-                    title={item.title}
-                    allowFullScreen
-                    frameBorder={0}
-                    loading="lazy"
-                  ></iframe>
+                    <img src={project.thumbnail.src} alt={project.thumbnail.alt} loading="lazy" />
                 )}
               </div>
-            </article>
+            </Link>
           ))}
         </section>
 
         <footer className="footer">
-        <div className="footer-inner">
-          <div className="footer-left">
-            <div>Copyright © 2026, stomii.com</div>
-            <div>contact@stomii.com</div>
-          </div>
-          <div className="footer-right">
-          {/* <a href="https://www.instagram.com/askypic" target="_blank" rel="noopener noreferrer" className="social-link">
+          <div className="footer-inner">
+            <div className="footer-left">
+              <div>Copyright © 2026, stomii.com</div>
+              <div>contact@stomii.com</div>
+            </div>
+            <div className="footer-right">
+            {/* <a href="https://www.instagram.com/askypic" target="_blank" rel="noopener noreferrer" className="social-link">
               <img src="igicon.png" alt="Instagram" className="logo-ig" />
             </a> */}
-            <a href="https://www.youtube.com/@stomiistudios" target="_blank" rel="noopener noreferrer" className="social-link">
-              <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" />
-            </a>
+              <a href="https://www.youtube.com/@stomiistudios" target="_blank" rel="noopener noreferrer" className="social-link">
+                <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" />
+              </a>
+            </div>
           </div>
-        </div>
-      </footer>
-    </div>
-  </main>
-);
+        </footer>
+      </div>
+    </main>
+  );
 };
-// ...existing code...
 
 export default Work;
