@@ -12,7 +12,6 @@ export type Project = {
   stillFrames: Array<{
     src: string;
     alt: string;
-    solidBackground?: boolean;
   }>;
 };
 
@@ -33,12 +32,10 @@ export const projects: Project[] = [
       {
         src: `${process.env.PUBLIC_URL || ''}/hokastill0.png`,
         alt: 'Hoka Spec Ad still frame 1',
-        solidBackground: true,
       },
       {
-        src: `${process.env.PUBLIC_URL || ''}/hokastill1.png`,
+        src: `${process.env.PUBLIC_URL || ''}/hokaad.png`,
         alt: 'Hoka Spec Ad still frame 2',
-        solidBackground: true,
       },
       {
         src: `${process.env.PUBLIC_URL || ''}/hokastill2.png`,
