@@ -26,7 +26,7 @@ const App: React.FC = () => {
         <nav className="navbar">
           <div className="nav-left">
             <Link to="/" className="nav-logo">
-              <img src={`${assetPrefix}/AlexSkySignature2.png`} alt="Alexander Sky Logo" />
+              <img src={`${assetPrefix}/AlexSkySignature2.png`} alt="Stomii Studios" />
             </Link>
           </div>
           <div className="nav-right">
