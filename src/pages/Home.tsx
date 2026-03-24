@@ -68,7 +68,7 @@ const Home: React.FC = () => {
           </video>
         </div>
         <div className="hero-text">
-          <img src={`${assetPrefix}/sforstomii.png`} alt="Alexander Sky Logo middle" />
+          <img src={`${assetPrefix}/sforstomii.png`} alt="Stomii Studios logo" />
         </div>
         <button className="video-control" onClick={toggleVideoPlayback} aria-label={isPlaying ? 'Pause video' : 'Play video'}>
           <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />

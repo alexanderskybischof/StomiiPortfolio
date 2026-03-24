@@ -12,6 +12,7 @@ export type Project = {
   stillFrames: Array<{
     src: string;
     alt: string;
+    solidBackground?: boolean;
   }>;
 };
 
