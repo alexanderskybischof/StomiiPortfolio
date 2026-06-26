@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
+import { getText, useLanguage } from '../i18n';
 
 const Work: React.FC = () => {
   const assetPrefix = process.env.PUBLIC_URL || '';
+  const { language } = useLanguage();
 
   useEffect(() => {
     const cards = document.querySelectorAll('.work-row');
@@ -34,16 +36,14 @@ const Work: React.FC = () => {
   return (
     <main className="page page--work">
       <div className="page-content page-content--work">
-        <h1 className="work-fade">Work</h1>
-        <p className="work-description work-fade">
-          
-        </p>
+        <h1 className="work-fade">{language === 'ja' ? '作品' : 'Work'}</h1>
+        <p className="work-description work-fade"></p>
 
         <section className="work-list work-fade">
           {projects.map((project) => (
             <Link className="work-row" key={project.slug} to={`/work/${project.slug}`}>
               <div className="work-row__label">
-                <h2 className="work-row__title">{project.title}</h2>
+                <h2 className="work-row__title">{getText(project.title, language)}</h2>
               </div>
               <div className="work-row__media">
                 {project.thumbnail.type === 'video' ? (
@@ -54,10 +54,16 @@ const Work: React.FC = () => {
                     autoPlay
                     loop
                     preload="metadata"
-                    aria-label={project.thumbnail.alt}
+                    aria-label={getText(project.thumbnail.alt, language)}
                   />
                 ) : (
-                    <img src={project.thumbnail.src} alt={project.thumbnail.alt} loading="lazy" />
+                    <img
+                      src={project.thumbnail.src}
+                      alt={getText(project.thumbnail.alt, language)}
+                      loading="lazy"
+                      draggable={false}
+                      style={project.thumbnail.objectPosition ? { objectPosition: project.thumbnail.objectPosition } : undefined}
+                    />
                 )}
               </div>
             </Link>
@@ -75,7 +81,7 @@ const Work: React.FC = () => {
               <img src="igicon.png" alt="Instagram" className="logo-ig" />
             </a> */}
               <a href="https://www.youtube.com/@stomiistudios" target="_blank" rel="noopener noreferrer" className="social-link">
-                <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" />
+                <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" draggable={false} />
               </a>
             </div>
           </div>

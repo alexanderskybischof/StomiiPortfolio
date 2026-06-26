@@ -6,8 +6,9 @@ import Work from './pages/Work';
 import Contact from './pages/Contact';
 import Team from './pages/Team';
 import ProjectDetail from './pages/ProjectDetail';
+import { LanguageProvider, useLanguage } from './i18n';
 
-const App: React.FC = () => {
+const AppShell: React.FC = () => {
   const publicUrl = process.env.PUBLIC_URL || '';
   const pathFromPublicUrl = (() => {
     try {
@@ -19,6 +20,7 @@ const App: React.FC = () => {
   const basename = pathFromPublicUrl || '/';
   const assetPrefix = publicUrl || '';
   const grainStyle = { '--grain-url': `url(${assetPrefix}/noise.png)` } as React.CSSProperties;
+  const { language, toggleLanguage } = useLanguage();
 
   return (
     <Router basename={basename}>
@@ -26,19 +28,22 @@ const App: React.FC = () => {
         <nav className="navbar">
           <div className="nav-left">
             <Link to="/" className="nav-logo">
-              <img src={`${assetPrefix}/AlexSkySignature2.png`} alt="Stomii Studios" />
+              <img src={`${assetPrefix}/AlexSkySignature2.png`} alt="Stomii Studios" draggable={false} />
             </Link>
           </div>
           <div className="nav-right">
             <Link to="/work" className="nav-link">
-              WORK
+              {language === 'ja' ? '作品' : 'WORK'}
             </Link>
             <Link to="/team" className="nav-link">
-              TEAM
+              {language === 'ja' ? 'チーム' : 'TEAM'}
             </Link>
             <Link to="/contact" className="nav-link">
-              CONTACT
+              {language === 'ja' ? '連絡先' : 'CONTACT'}
             </Link>
+            <button type="button" className="nav-language-toggle" onClick={toggleLanguage}>
+              {language === 'ja' ? 'EN' : 'JP'}
+            </button>
           </div>
         </nav>
 
@@ -54,5 +59,11 @@ const App: React.FC = () => {
     </Router>
   );
 };
+
+const App: React.FC = () => (
+  <LanguageProvider>
+    <AppShell />
+  </LanguageProvider>
+);
 
 export default App;

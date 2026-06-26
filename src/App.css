@@ -11,6 +11,18 @@ body, html, .App {
   z-index: 0;
 }
 
+.nav-logo img,
+.hero-text img,
+.info-image img,
+.brand-logo,
+.work-row__media img,
+.project-detail__still img,
+.team-photo,
+.footer .social-link img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
 /* Film Grain Overlay */
 .has-grain { position: relative; overflow: hidden; }
 .has-grain::after {
@@ -50,11 +62,21 @@ body, html, .App {
   transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
 }
 .nav-link:hover { opacity: 0.6; transform: scale(1.1); }
+.nav-language-toggle {
+  border: 1px solid rgba(255,255,255,0.32);
+  background: transparent;
+  color: #fff;
+  padding: 6px 9px;
+  font: inherit;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
 @media (max-width: 700px) {
   .navbar { height: 56px; padding: 0 16px; }
   .nav-logo img { width: 120px; margin-left: 0; margin-top: 12px; }
   .nav-right { gap: 12px; }
   .nav-link { margin-right: 0; font-size: 0.85rem; padding: 12px 0; }
+  .nav-language-toggle { padding: 6px 8px; font-size: 0.62rem; }
 }
 
 /* Hero */
@@ -118,6 +140,19 @@ body, html, .App {
 }
 .info-content p {
   font-size: .8rem; color: #ddd; margin-bottom: 15px; letter-spacing: 0.03em; line-height: 1.7;
+}
+.info-copy-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.info-copy-stack h3 {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+.info-copy-stack p {
+  margin-bottom: 0;
 }
 .info-content a { color: #ddd; text-decoration: none; border-bottom: 1px solid #ddd; }
 .info-content a:hover { opacity: 0.6; }
@@ -196,6 +231,10 @@ body, html, .App {
 .page-content { max-width: 640px; width: 100%; }
 .page-content--work { max-width: 1200px; }
 .page--work h1, .page--contact h1, .page--team h1, .page--about h1 { width: 100%; text-align: center; }
+.page--work h1, .page--contact h1, .page--team h1, .page--about h1, .page--project h1 {
+  margin: 0;
+  line-height: 1.14;
+}
 .page-content--team {
   max-width: 1200px;
   margin: 0 auto; /* center the content block */
@@ -374,10 +413,12 @@ body, html, .App {
   width: 100%;
   height: 100%;
   border: 0;
+  display: block;
 }
 .project-detail__description {
-  max-width: 760px;
+  width: min(100%, 860px);
   margin-top: 32px;
+  padding: 22px 24px;
   text-align: center;
 }
 .project-detail__description p {
@@ -405,14 +446,84 @@ body, html, .App {
 .project-detail__still--solid {
   background-color: #000;
 }
+.project-detail__still-button {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
 .project-detail__still img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+.project-detail__still-button:hover img {
+  transform: scale(1.03);
+  opacity: 0.9;
 }
 .project-detail__still-image--solid {
   background-color: #000;
+}
+.project-detail__lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 88px;
+  background: rgba(0, 0, 0, 0.92);
+}
+.project-detail__lightbox-content {
+  max-width: min(100%, 1200px);
+  max-height: min(100%, 86vh);
+}
+.project-detail__lightbox-content img {
+  display: block;
+  max-width: 100%;
+  max-height: 86vh;
+  object-fit: contain;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+}
+.project-detail__lightbox-close,
+.project-detail__lightbox-nav {
+  position: absolute;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(8, 8, 8, 0.72);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.24s ease, border-color 0.24s ease, opacity 0.24s ease;
+}
+.project-detail__lightbox-close:hover,
+.project-detail__lightbox-nav:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.32);
+}
+.project-detail__lightbox-close {
+  top: 84px;
+  right: 24px;
+  padding: 12px 16px;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.project-detail__lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  font-size: 2rem;
+  line-height: 1;
+}
+.project-detail__lightbox-nav--prev {
+  left: 24px;
+}
+.project-detail__lightbox-nav--next {
+  right: 24px;
 }
 
 /* Team */
@@ -445,24 +556,88 @@ body, html, .App {
   .team-divider { display: none; }
   .team-photo { width: 100%; max-width: 320px; height: auto; }
   .work-row {
-    min-height: 180px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
   .work-row__label {
-    top: -14px;
-    left: -10px;
-    max-width: min(70vw, 240px);
-    padding: 10px 16px;
-    border-radius: 14px;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: none;
+    padding: 14px 16px;
+    border-radius: 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
   }
   .work-row__media {
-    min-height: 180px;
+    position: relative;
+    inset: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+  .work-row__title {
+    font-size: 1.02rem;
+  }
+  .project-detail__header,
+  .page--project h1,
+  .page--work h1 {
+    text-align: left;
+  }
+  .project-detail__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .project-detail__back-link {
+    margin-bottom: 0;
   }
   .project-detail__video-grid {
     grid-template-columns: 1fr;
     width: min(100%, 720px);
   }
+  .project-detail__description {
+    width: 100%;
+    padding: 18px 16px;
+  }
+  .project-detail__description p {
+    text-align: left;
+  }
   .project-detail__stills {
-    grid-auto-columns: minmax(240px, 84vw);
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+    grid-auto-columns: auto;
+    overflow-x: visible;
+    gap: 12px;
+    padding-bottom: 0;
+  }
+  .project-detail__still {
+    aspect-ratio: auto;
+  }
+  .project-detail__still img {
+    aspect-ratio: 4 / 3;
+  }
+  .project-detail__lightbox {
+    padding: 72px 16px 24px;
+  }
+  .project-detail__lightbox-close {
+    top: 88px;
+    right: 16px;
+  }
+  .project-detail__lightbox-nav {
+    top: auto;
+    bottom: 16px;
+    transform: none;
+  }
+  .project-detail__lightbox-nav--prev {
+    left: 16px;
+  }
+  .project-detail__lightbox-nav--next {
+    right: 16px;
   }
 }
 

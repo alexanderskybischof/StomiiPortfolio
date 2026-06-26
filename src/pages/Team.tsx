@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
+import { useLanguage } from '../i18n';
 
 const Team: React.FC = () => {
   const assetPrefix = process.env.PUBLIC_URL || '';
   const leftRef = useRef<HTMLDivElement | null>(null);
   const rightRef = useRef<HTMLDivElement | null>(null);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const targets: (Element | null)[] = [titleRef.current, leftRef.current, rightRef.current];
@@ -23,20 +25,37 @@ const Team: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  const copy =
+    language === 'ja'
+      ? {
+          title: 'チーム',
+          portfolio: 'ポートフォリオを見る',
+          youtubeAlt: 'YouTube',
+          alexAlt: 'アレクサンダー・スカイのポートレート',
+          tomokiAlt: '成川友希のポートレート',
+        }
+      : {
+          title: 'Team',
+          portfolio: 'Click to view portfolio',
+          youtubeAlt: 'YouTube',
+          alexAlt: 'Alexander Sky portrait',
+          tomokiAlt: 'Tomoki Narukawa portrait',
+        };
+
   return (
     <main className="page page--team">
       <div className="page-content page-content--team">
-        <h1 className="work-fade" ref={titleRef}>Team</h1>
+        <h1 className="work-fade" ref={titleRef}>{copy.title}</h1>
         <section className="team-grid">
           <div className="team-column work-fade" ref={leftRef}>
-            <img className="team-photo" src={`${assetPrefix}/IMG_1149.jpeg`} alt="Alexander Sky portrait" />
+            <img className="team-photo" src={`${assetPrefix}/IMG_1149.jpeg`} alt={copy.alexAlt} draggable={false} />
             <div className="team-bio">
               <h2>Alexander Sky Bischof</h2>
               <p>
                 alex@stomii.com
               </p>
               <a className="portfolio-link" href="https://alexanderskyb.com/" target="_blank" rel="noopener noreferrer">
-                Click to view portfolio
+                {copy.portfolio}
               </a>
             </div>
           </div>
@@ -44,14 +63,14 @@ const Team: React.FC = () => {
           <div className="team-divider" aria-hidden="true"></div>
 
           <div className="team-column work-fade" ref={rightRef}>
-            <img className="team-photo" src={`${assetPrefix}/tomoki.jpg`} alt="Tomoki Narukawa portrait" />
+            <img className="team-photo" src={`${assetPrefix}/tomoki.jpg`} alt={copy.tomokiAlt} draggable={false} />
             <div className="team-bio">
               <h2>Tomoki Narukawa</h2>
               <p>
                 tomoki@stomii.com
               </p>
               <a className="portfolio-link" href="https://tomokina.com" target="_blank" rel="noopener noreferrer">
-                Click to view portfolio
+                {copy.portfolio}
                 </a>
             </div>
           </div>
@@ -68,7 +87,7 @@ const Team: React.FC = () => {
               <img src="igicon.png" alt="Instagram" className="logo-ig" />
             </a> */}
             <a href="https://www.youtube.com/@stomiistudios" target="_blank" rel="noopener noreferrer" className="social-link">
-              <img src={`${assetPrefix}/ytgreenlogo.png`} alt="YouTube" className="logo-yt" />
+              <img src={`${assetPrefix}/ytgreenlogo.png`} alt={copy.youtubeAlt} className="logo-yt" draggable={false} />
             </a>
           </div>
         </div>
