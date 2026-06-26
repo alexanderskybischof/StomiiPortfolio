@@ -63,7 +63,7 @@ const Home: React.FC = () => {
           what:
             '私たちの強みは、人の動きとダイナミックな屋外環境に根ざした、自然体でテンポの良いストーリーテリングにあります。これまでに、アパレルブランド、サーフスクール、スポーツチーム、非営利団体と仕事をしてきました。',
           where:
-            '現在はオーストラリアのシドニーを拠点にしながら、東京、サンフランシスコ、ボストンへも頻繁に移動しています。ぜひご連絡ください。',
+            '現在は東京、サンフランシスコ、ボストンを拠点に活動しています。ぜひご連絡ください。',
           whoLabel: '誰',
           whatLabel: '何',
           whereLabel: 'どこ',
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
           what:
             'Our strengths lie in naturalistic, fast-paced storytelling grounded in human movement and dynamic outdoor settings. In the past, we have worked with clothing brands, surf schools, athletic teams, and nonprofits.',
           where:
-            'We are currently located out of Sydney, Australia, but frequently travel to Tokyo, San Francisco, and Boston. Let’s get in touch and discuss!',
+            'We are currently located out of Tokyo, San Francisco, and Boston. Let’s get in touch and discuss!',
           whoLabel: 'Who',
           whatLabel: 'What',
           whereLabel: 'Where',
