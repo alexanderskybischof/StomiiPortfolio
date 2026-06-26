@@ -134,7 +134,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="info-image" ref={infoImageRef}>
-            <img src={`${assetPrefix}/Alex.jpg`} alt={copy.portraitAlt} draggable={false} />
+            <img src={`${assetPrefix}/Alex.JPG`} alt={copy.portraitAlt} draggable={false} />
           </div>
         </div>
       </section>
